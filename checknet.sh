@@ -89,9 +89,9 @@ echo # (optional) move to a new line
 if [[ "$REPLY" =~ ^[Yy]$ ]]; then
     echo "Traceroute"
     if [[ "$(uname -o)" == "Cygwin" ]]; then
-        tracert -d 8.8.8.8
+        tracert -d www.google.com
     else
-        traceroute -d 8.8.8.8
+        traceroute www.google.com
     fi
 fi
     
