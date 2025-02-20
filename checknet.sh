@@ -63,16 +63,24 @@ echo # (optional) move to a new line
 if [[ "$REPLY" =~ ^[Yy]$ ]]; then
     echo "*************************************************************************"
     echo "Speedtest for the Link to Internet"
-    ./speedtest
+    if [[ "$(uname -o)" == "Cygwin" ]]; then
+        ./speedtest
+    else
+        speedtest
+    fi
 fi
 
-echo "*****************************************************************************"
+
 read -r -p "Run a Traceroute to Cloudflare DNS 1.1.1.1? [y/N]" -n 1
 echo # (optional) move to a new line
 if [[ "$REPLY" =~ ^[Yy]$ ]]; then
     echo "*************************************************************************"
     echo "Traceroute"
-    tracert 1.1.1.1
+    if [[ "$(uname -o)" == "Cygwin" ]]; then
+        tracert 1.1.1.1
+    else
+        traceroute 1.1.1.1
+    fi
 fi
 
 echo "*****************************************************************************"
@@ -80,7 +88,11 @@ read -r -p "Run a Traceroute to Google? [y/N]" -n 1
 echo # (optional) move to a new line
 if [[ "$REPLY" =~ ^[Yy]$ ]]; then
     echo "Traceroute"
-    tracert -d 8.8.8.8
+    if [[ "$(uname -o)" == "Cygwin" ]]; then
+        tracert -d 8.8.8.8
+    else
+        traceroute -d 8.8.8.8
+    fi
 fi
     
 echo "*****************************************************************************"
